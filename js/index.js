@@ -28,6 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
   // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
+  let finished = false;
   const quizArray = [
     {
       q: 'Which is the third planet from the sun?',
@@ -43,6 +44,16 @@ window.addEventListener('DOMContentLoaded', () => {
       q: 'What is the capital of Australia',
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
+    },
+    {
+      q: "What does HTML stand for?",
+      o: ["Hyper Tag Markup Language", "Hyper Text Markup Language", "Hyperlinks Text Mark Language", "Hyperlinking Text Marking Language"],
+      a: 1,
+    },
+    {
+      q: "What does CSS stand for?",
+      o: ["Computing Style Sheet", "Creative Style System", "Cascading Style Sheet", "Creative Styling Sheet"],
+      a: 2,
     },
   ];
 
@@ -63,28 +74,65 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // Calculate the score
-  const calculateScore = () => {
+  const submitQuiz = () => {
     let score = 0;
-    quizArray.map((quizItem, index) => {
-      for (let i = 0; i < 4; i++) {
-        //highlight the li if it is the correct answer
-        let li = `li_${index}_${i}`;
-        let r = `radio_${index}_${i}`;
-        liElement = document.querySelector('#' + li);
-        radioElement = document.querySelector('#' + r);
-
-        if (quizItem.a == i) {
-          //change background color of li element here
-        }
-
-        if (radioElement.checked) {
-          // code for task 1 goes here
-        }
+    //loops through each question
+    for (let i = 0; i < quizArray.length; i++){
+      //gets all the radio buttons
+      let radio = document.querySelectorAll('input[name="radio' + i.toString() +'"]')
+      //checks if correct answer is selected
+      //if yes, increment the score
+      if(radio[quizArray[i]['a']].checked){
+        score++;
       }
-    });
-  };
+      //highlights all corrects answers
+      radio[quizArray[i]['a']].parentElement.style.border = '3px solid lightgreen';
+    }
+    //disables radio buttons
+    let radioBtn = document.querySelectorAll('input[type="radio"]');
+    for (let i = 0; i < radioBtn.length; i++){
+      radioBtn[i].disabled = true
+    }
+    //displays score
+    document.querySelector(".score").innerHTML = '<h4>Total Score: ' + score.toString() + '/5</h4>';
+    //kill timer
+    finished = true;
+  }
+
+  document.querySelector('#btnSubmit').addEventListener("click", submitQuiz);
 
   // call the displayQuiz function
   displayQuiz();
+
+  //timer function
+  document.getElementById("btnstart").addEventListener("click", function(){
+  
+    const startTiming = 1
+    let time = startTiming * 60
+    
+    const count = document.getElementById('time')
+    let timer = setInterval(updateTimer, 1000)
+    function updateTimer(){
+      if(finished){
+        clearInterval(timer)
+        return;
+      }
+      const minutes = Math.floor(time/60)
+      let seconds = time % 60
+    
+      seconds = seconds < 10 ? '0' + seconds : seconds
+      count.innerHTML = `${minutes}:${seconds}`
+      time--
+  
+      if(time < 0){
+        clearInterval(timer);
+        submitQuiz();
+      }
+    }
+  });
 });
+  
+//reloads the page
+document.getElementById("btnReset").addEventListener("click", function(){
+  location.reload();
+})

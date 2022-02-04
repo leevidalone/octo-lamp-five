@@ -21,8 +21,8 @@
       <div class="card" style="width: 18rem">
         <div class="card-body">
           <h5 class="card-title">Test your knowledge</h5>
-          <p class="card-text">Some quick description about the quiz .</p>
-          <a class="btn btn-primary">Start</a>
+          <p class="card-text">5 Question 1 Minute quiz be sure to finish before the allocated time!</p>
+          <a class="btn btn-primary" id="btnstart">Start</a>
         </div>
       </div>
     </div>
@@ -31,10 +31,10 @@
     <div class="container" id="quizBlock" style="display: none">
       <div class="mb-5">
         <h2>Test your knowledge</h2>
-        - Time remaining <span id="time">01:00</span>
+        Time remaining: <span id="time">1:00</span><br>
       </div>
       <div id="quizWrap"></div>
-
+      <div class="score"></div>
       <div>
         <button type="button" class="btn btn-primary" id="btnSubmit">
           Submit Quiz
