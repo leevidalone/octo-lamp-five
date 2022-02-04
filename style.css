@@ -1,0 +1,39 @@
+#btnstart{
+    color: white;
+    background-color:#ff6961;
+    border-color: #ff6961;
+    font-weight: 500;
+    border: 3px solid #fd544b;
+}
+
+#btnstart:hover{
+    color: white;
+    background-color:#dd4e46;
+    border: 3px solid #dd4e46;
+    box-shadow: 2px 2px #742a26;
+}
+
+#start{
+    text-align: center;
+}
+
+#startCard{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+}
+
+.card-body h5{
+    text-decoration: underline;
+}
+
+.mb-5{
+    text-align: center;
+}
+
+#buttons{
+    text-align: center;
+    margin-bottom: 3.5rem;
+}

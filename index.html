@@ -14,11 +14,12 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="style.css">
     <title>Quiz</title>
   </head>
   <body>
-    <div class="container m-5" id="start">
-      <div class="card" style="width: 18rem">
+    <div class="container" id="start">
+      <div class="card" id="startCard" style="width: 18rem">
         <div class="card-body">
           <h5 class="card-title">Test your knowledge</h5>
           <p class="card-text">5 Question 1 Minute quiz be sure to finish before the allocated time!</p>
@@ -35,7 +36,7 @@
       </div>
       <div id="quizWrap"></div>
       <div class="score"></div>
-      <div>
+      <div id="buttons">
         <button type="button" class="btn btn-primary" id="btnSubmit">
           Submit Quiz
         </button>
